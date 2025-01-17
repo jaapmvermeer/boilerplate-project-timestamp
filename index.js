@@ -24,7 +24,12 @@ app.get("/api/hello", function (req, res) {
   res.json({greeting: 'hello API'});
 });
 
-
+// your first API endpoint... 
+app.get("/api/:date", function (req, res) {
+  console.log(req.params.date);
+  const fecha = new Date(isNaN(req.params.date)?req.params.date: parseInt(req.params.date));
+  res.json({unix:fecha.getTime(),utc: fecha});
+});
 
 // Listen on port set in environment variable or default to 3000
 var listener = app.listen(process.env.PORT || 3000, function () {
